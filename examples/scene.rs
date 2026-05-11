@@ -43,16 +43,14 @@ fn main() {
     middle.material.specular = 0.3;
 
     let mut right = Sphere::default();
-    right.transform =
-        Matrix4::translation(1.5, 0.5, -0.5) * Matrix4::scaling(0.5, 0.5, 0.5);
+    right.transform = Matrix4::translation(1.5, 0.5, -0.5) * Matrix4::scaling(0.5, 0.5, 0.5);
     right.material = Material::default();
     right.material.color = Color::new(0.0, 0.0, 1.0);
     right.material.diffuse = 0.7;
     right.material.specular = 0.3;
 
     let mut left = Sphere::default();
-    left.transform = Matrix4::translation(-1.5, 0.33, -0.75)
-        * Matrix4::scaling(0.33, 0.33, 0.33);
+    left.transform = Matrix4::translation(-1.5, 0.33, -0.75) * Matrix4::scaling(0.33, 0.33, 0.33);
     left.material = Material::default();
     left.material.color = Color::new(1.0, 0.0, 0.0);
     left.material.diffuse = 0.7;

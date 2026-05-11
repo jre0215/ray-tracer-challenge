@@ -33,8 +33,7 @@ impl Tuple {
 
     /// Gets the distance represented by the vector.
     pub fn magnitude(&self) -> f32 {
-        (self.x.powi(2) + self.y.powi(2) + self.z.powi(2) + self.w.powi(2))
-            .sqrt()
+        (self.x.powi(2) + self.y.powi(2) + self.z.powi(2) + self.w.powi(2)).sqrt()
     }
 
     /// Converts the vector into a unit vector.
@@ -56,10 +55,7 @@ impl Tuple {
     /// If the two vectors are unit vectors, the dot product is
     /// actually the cosine of the angle between them.
     pub fn dot(&self, other: Tuple) -> f32 {
-        (self.x * other.x)
-            + (self.y * other.y)
-            + (self.z * other.z)
-            + (self.w * other.w)
+        (self.x * other.x) + (self.y * other.y) + (self.z * other.z) + (self.w * other.w)
     }
 
     /// Returns a new vector that is perpendicular to both of the

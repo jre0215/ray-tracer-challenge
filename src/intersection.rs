@@ -117,10 +117,7 @@ mod tests {
 
     #[test]
     fn test_intersect_sets_the_object_on_the_intersection() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert_eq!(xs.len(), 2);
@@ -175,10 +172,7 @@ mod tests {
 
     #[test]
     fn test_precomputing_the_state_of_an_intersection() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let shape = Sphere::default();
         let mut i = find_hit(shape.intersect(r)).unwrap();
         i.prepare_hit(r);
@@ -190,10 +184,7 @@ mod tests {
 
     #[test]
     fn test_the_hit_when_an_intersection_occurs_on_the_outside() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let shape = Sphere::default();
         let mut i = find_hit(shape.intersect(r)).unwrap();
         i.prepare_hit(r);
@@ -202,8 +193,7 @@ mod tests {
 
     #[test]
     fn test_the_hit_when_an_intersection_occurs_on_the_inside() {
-        let r =
-            Ray::new(Tuple::point(0.0, 0.0, 0.0), Tuple::vector(0.0, 0.0, 1.0));
+        let r = Ray::new(Tuple::point(0.0, 0.0, 0.0), Tuple::vector(0.0, 0.0, 1.0));
         let shape = Sphere::default();
         let mut i = find_hit(shape.intersect(r)).unwrap();
         i.prepare_hit(r);
@@ -217,10 +207,7 @@ mod tests {
     #[test]
     fn test_shading_an_intersection() {
         let w = World::default();
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let shape = w.objects[0];
         let mut i = find_hit(shape.intersect(r)).unwrap();
         i.prepare_hit(r);
@@ -230,10 +217,7 @@ mod tests {
 
     #[test]
     fn test_the_hit_should_offset_the_point() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let mut shape = Sphere::default();
         shape.transform = Matrix4::translation(0.0, 0.0, 1.0);
         let mut i = Intersection::new(5.0, shape);

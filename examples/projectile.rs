@@ -56,11 +56,7 @@ fn main() {
         println!("projectile.position: {:?}", projectile.position);
         let x = projectile.position.x.round() as i32;
         let y = (canvas.height as i32) - (projectile.position.y.round() as i32);
-        if x < 0
-            || x > ((canvas.width - 1) as i32)
-            || y < 0
-            || y > ((canvas.height - 1) as i32)
-        {
+        if x < 0 || x > ((canvas.width - 1) as i32) || y < 0 || y > ((canvas.height - 1) as i32) {
             break;
         }
         canvas.write_pixel(x as usize, y as usize, color);

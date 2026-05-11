@@ -29,9 +29,7 @@ impl Canvas {
 
     pub fn to_ppm(&self) -> String {
         let mut ppm = String::new();
-        ppm.push_str(
-            format!("P3\n{} {}\n255\n", self.width, self.height).as_str(),
-        );
+        ppm.push_str(format!("P3\n{} {}\n255\n", self.width, self.height).as_str());
         let mut values: Vec<i32> = Vec::new();
         for pixel in self.pixels.iter() {
             let scaled_color = *pixel * 255.0;
@@ -126,9 +124,7 @@ mod tests {
         let ppm = c.to_ppm();
         let mut lines = ppm.lines().skip(3);
         assert_eq!(
-            Some(
-                "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204"
-            ),
+            Some("255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204"),
             lines.next()
         );
         assert_eq!(
@@ -136,9 +132,7 @@ mod tests {
             lines.next()
         );
         assert_eq!(
-            Some(
-                "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204"
-            ),
+            Some("255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204"),
             lines.next()
         );
         assert_eq!(

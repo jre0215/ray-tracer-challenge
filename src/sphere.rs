@@ -36,8 +36,7 @@ impl Sphere {
     pub fn normal_at(&self, world_point: Tuple) -> Tuple {
         let object_point = self.transform.inverse() * world_point;
         let object_normal = object_point - self.origin;
-        let mut world_normal =
-            self.transform.inverse().transpose() * object_normal;
+        let mut world_normal = self.transform.inverse().transpose() * object_normal;
         world_normal.w = 0.0;
         world_normal.normalize()
     }
@@ -66,10 +65,7 @@ mod tests {
 
     #[test]
     fn test_a_ray_intersects_a_sphere_at_two_points() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert!(!xs.is_empty());
@@ -79,10 +75,7 @@ mod tests {
 
     #[test]
     fn test_a_ray_intersects_a_sphere_at_a_tangent() {
-        let r = Ray::new(
-            Tuple::point(0.0, 1.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 1.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert!(!xs.is_empty());
@@ -92,10 +85,7 @@ mod tests {
 
     #[test]
     fn test_a_ray_misses_a_sphere() {
-        let r = Ray::new(
-            Tuple::point(0.0, 2.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 2.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert!(xs.is_empty());
@@ -103,8 +93,7 @@ mod tests {
 
     #[test]
     fn test_a_ray_originates_inside_a_sphere() {
-        let r =
-            Ray::new(Tuple::point(0.0, 0.0, 0.0), Tuple::vector(0.0, 0.0, 1.0));
+        let r = Ray::new(Tuple::point(0.0, 0.0, 0.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert!(!xs.is_empty());
@@ -114,8 +103,7 @@ mod tests {
 
     #[test]
     fn test_a_sphere_is_behind_a_ray() {
-        let r =
-            Ray::new(Tuple::point(0.0, 0.0, 5.0), Tuple::vector(0.0, 0.0, 1.0));
+        let r = Ray::new(Tuple::point(0.0, 0.0, 5.0), Tuple::vector(0.0, 0.0, 1.0));
         let s = Sphere::default();
         let xs = s.intersect(r);
         assert!(!xs.is_empty());
@@ -139,10 +127,7 @@ mod tests {
 
     #[test]
     fn test_intersecting_a_scaled_sphere_with_a_ray() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let mut s = Sphere::default();
         s.transform = Matrix4::scaling(2.0, 2.0, 2.0);
         let xs = s.intersect(r);
@@ -153,10 +138,7 @@ mod tests {
 
     #[test]
     fn test_intersecting_a_translated_sphere_with_a_ray() {
-        let r = Ray::new(
-            Tuple::point(0.0, 0.0, -5.0),
-            Tuple::vector(0.0, 0.0, 1.0),
-        );
+        let r = Ray::new(Tuple::point(0.0, 0.0, -5.0), Tuple::vector(0.0, 0.0, 1.0));
         let mut s = Sphere::default();
         s.transform = Matrix4::translation(5.0, 0.0, 0.0);
         let xs = s.intersect(r);
@@ -188,8 +170,7 @@ mod tests {
     fn test_the_normal_on_a_sphere_at_a_nonaxial_point() {
         let sqrt3_over_3 = (3.0 as f32).sqrt() / 3.0;
         let s = Sphere::default();
-        let n =
-            s.normal_at(Tuple::point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
+        let n = s.normal_at(Tuple::point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
         assert_eq!(n, Tuple::vector(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
     }
 
@@ -197,8 +178,7 @@ mod tests {
     fn test_the_normal_is_a_normalized_vector() {
         let sqrt3_over_3 = (3.0 as f32).sqrt() / 3.0;
         let s = Sphere::default();
-        let n =
-            s.normal_at(Tuple::point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
+        let n = s.normal_at(Tuple::point(sqrt3_over_3, sqrt3_over_3, sqrt3_over_3));
         assert_eq!(n, n.normalize());
     }
 

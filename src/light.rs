@@ -91,40 +91,23 @@ mod tests {
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, 0.0, -1.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            false,
-        );
+        let light = PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
+        let result = lighting(material, light, position, eye_vector, normal_vector, false);
         // ambient + diffuse + specular
         // 0.1 + 0.9 + 0.9 = 1.9
         assert_eq!(result, Color::new(1.9, 1.9, 1.9));
     }
 
     #[test]
-    fn test_lighting_with_the_eye_between_light_and_surface_eye_offset_45_degrees()
-     {
+    fn test_lighting_with_the_eye_between_light_and_surface_eye_offset_45_degrees() {
         let material = Material::default();
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, SQRT_2 / 2.0, -SQRT_2 / 2.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
+        let light = PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
         // ambient + diffuse + no specular
         // 0.1 + 0.9 + 0.0 = 1.0
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            false,
-        );
+        let result = lighting(material, light, position, eye_vector, normal_vector, false);
         assert_eq!(result, Color::white());
     }
 
@@ -134,16 +117,8 @@ mod tests {
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, 0.0, -1.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 10.0, -10.0), Color::white());
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            false,
-        );
+        let light = PointLight::new(Tuple::point(0.0, 10.0, -10.0), Color::white());
+        let result = lighting(material, light, position, eye_vector, normal_vector, false);
         // ambient + partial diffuse + no specular
         // 0.1 + 0.9 * sqrt(2)/2.0 + 0 = 0.7364
         assert_eq!(result, Color::new(0.7364, 0.7364, 0.7364));
@@ -155,16 +130,8 @@ mod tests {
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, -SQRT_2 / 2.0, -SQRT_2 / 2.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 10.0, -10.0), Color::white());
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            false,
-        );
+        let light = PointLight::new(Tuple::point(0.0, 10.0, -10.0), Color::white());
+        let result = lighting(material, light, position, eye_vector, normal_vector, false);
         // ambient + partial diffuse + specular
         // 0.1 + 0.9 * sqrt(2)/2.0 + 0.9 = 1.63639
         assert_eq!(result, Color::new(1.63639, 1.63639, 1.63639));
@@ -176,16 +143,8 @@ mod tests {
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, 0.0, -1.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 0.0, 10.0), Color::white());
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            false,
-        );
+        let light = PointLight::new(Tuple::point(0.0, 0.0, 10.0), Color::white());
+        let result = lighting(material, light, position, eye_vector, normal_vector, false);
         // ambient + no diffuse + no specular
         // 0.1 + 0.0 + 0.0 = 0.1
         assert_eq!(result, Color::new(0.1, 0.1, 0.1));
@@ -197,16 +156,8 @@ mod tests {
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, 0.0, -1.0);
         let normal_vector = Tuple::vector(0.0, 0.0, -1.0);
-        let light =
-            PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
-        let result = lighting(
-            material,
-            light,
-            position,
-            eye_vector,
-            normal_vector,
-            true,
-        );
+        let light = PointLight::new(Tuple::point(0.0, 0.0, -10.0), Color::white());
+        let result = lighting(material, light, position, eye_vector, normal_vector, true);
         // ambient + no diffuse + no specular
         // 0.1 + 0.0 + 0.0 = 0.1
         assert_eq!(result, Color::new(0.1, 0.1, 0.1));

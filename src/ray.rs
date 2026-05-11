@@ -38,8 +38,7 @@ mod tests {
 
     #[test]
     fn test_computing_a_point_from_a_distance() {
-        let r =
-            Ray::new(Tuple::point(2.0, 3.0, 4.0), Tuple::vector(1.0, 0.0, 0.0));
+        let r = Ray::new(Tuple::point(2.0, 3.0, 4.0), Tuple::vector(1.0, 0.0, 0.0));
         assert_eq!(r.position(0.0), Tuple::point(2.0, 3.0, 4.0));
         assert_eq!(r.position(1.0), Tuple::point(3.0, 3.0, 4.0));
         assert_eq!(r.position(-1.0), Tuple::point(1.0, 3.0, 4.0));
@@ -48,8 +47,7 @@ mod tests {
 
     #[test]
     fn test_translating_a_ray() {
-        let r =
-            Ray::new(Tuple::point(1.0, 2.0, 3.0), Tuple::vector(0.0, 1.0, 0.0));
+        let r = Ray::new(Tuple::point(1.0, 2.0, 3.0), Tuple::vector(0.0, 1.0, 0.0));
         let m = Matrix4::translation(3.0, 4.0, 5.0);
         let r2 = r.transform(m);
         assert_eq!(r2.origin, Tuple::point(4.0, 6.0, 8.0));
@@ -58,8 +56,7 @@ mod tests {
 
     #[test]
     fn test_scaling_a_ray() {
-        let r =
-            Ray::new(Tuple::point(1.0, 2.0, 3.0), Tuple::vector(0.0, 1.0, 0.0));
+        let r = Ray::new(Tuple::point(1.0, 2.0, 3.0), Tuple::vector(0.0, 1.0, 0.0));
         let m = Matrix4::scaling(2.0, 3.0, 4.0);
         let r2 = r.transform(m);
         assert_eq!(r2.origin, Tuple::point(2.0, 6.0, 12.0));

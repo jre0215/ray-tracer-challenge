@@ -23,8 +23,7 @@ impl Matrix2 {
     }
 
     pub fn determinant(&self) -> f32 {
-        (self.rows[0][0] * self.rows[1][1])
-            - (self.rows[1][0] * self.rows[0][1])
+        (self.rows[0][0] * self.rows[1][1]) - (self.rows[1][0] * self.rows[0][1])
     }
 }
 
@@ -263,14 +262,7 @@ impl Matrix4 {
     /// Returns a transformation matrix that, when applied to a tuple,
     /// changes each component of the table in proportion to the other
     /// two components.
-    pub fn shearing(
-        x_y: f32,
-        x_z: f32,
-        y_x: f32,
-        y_z: f32,
-        z_x: f32,
-        z_y: f32,
-    ) -> Matrix4 {
+    pub fn shearing(x_y: f32, x_z: f32, y_x: f32, y_z: f32, z_x: f32, z_y: f32) -> Matrix4 {
         Matrix4::from_rows([
             [1.0, x_y, x_z, 0.0],
             [y_x, 1.0, y_z, 0.0],
@@ -393,11 +385,7 @@ mod tests {
 
     #[test]
     fn test_a_3x3_matrix_ought_to_be_representable() {
-        let m = Matrix3::from_rows([
-            [-3.0, 5.0, 0.0],
-            [1.0, -2.0, -7.0],
-            [0.0, 1.0, 1.0],
-        ]);
+        let m = Matrix3::from_rows([[-3.0, 5.0, 0.0], [1.0, -2.0, -7.0], [0.0, 1.0, 1.0]]);
         assert_eq!(m.rows[0][0], -3.0);
         assert_eq!(m.rows[0][1], 5.0);
         assert_eq!(m.rows[0][2], 0.0);
@@ -530,11 +518,7 @@ mod tests {
 
     #[test]
     fn test_a_submatrix_of_a_3x3_matrix_is_a_2x2_matrix() {
-        let a = Matrix3::from_rows([
-            [1.0, 5.0, 0.0],
-            [-3.0, 2.0, 7.0],
-            [0.0, 6.0, -3.0],
-        ]);
+        let a = Matrix3::from_rows([[1.0, 5.0, 0.0], [-3.0, 2.0, 7.0], [0.0, 6.0, -3.0]]);
         assert_eq!(
             a.submatrix(0, 2),
             Matrix2::from_rows([[-3.0, 2.0,], [0.0, 6.0]])
@@ -551,21 +535,13 @@ mod tests {
         ]);
         assert_eq!(
             a.submatrix(2, 1),
-            Matrix3::from_rows([
-                [-6.0, 1.0, 6.0],
-                [-8.0, 8.0, 6.0],
-                [-7.0, -1.0, 1.0]
-            ]),
+            Matrix3::from_rows([[-6.0, 1.0, 6.0], [-8.0, 8.0, 6.0], [-7.0, -1.0, 1.0]]),
         );
     }
 
     #[test]
     fn test_calculating_a_minor_of_a_3x3_matrix() {
-        let a = Matrix3::from_rows([
-            [3.0, 5.0, 0.0],
-            [2.0, -1.0, -7.0],
-            [6.0, -1.0, 5.0],
-        ]);
+        let a = Matrix3::from_rows([[3.0, 5.0, 0.0], [2.0, -1.0, -7.0], [6.0, -1.0, 5.0]]);
         let b = a.submatrix(1, 0);
         assert_eq!(b.determinant(), 25.0);
         assert_eq!(a.minor(1, 0), 25.0);
@@ -573,11 +549,7 @@ mod tests {
 
     #[test]
     fn test_calculating_a_cofactor_of_a_3x3_matrix() {
-        let a = Matrix3::from_rows([
-            [3.0, 5.0, 0.0],
-            [2.0, -1.0, -7.0],
-            [6.0, -1.0, 5.0],
-        ]);
+        let a = Matrix3::from_rows([[3.0, 5.0, 0.0], [2.0, -1.0, -7.0], [6.0, -1.0, 5.0]]);
         assert_eq!(a.minor(0, 0), -12.0);
         assert_eq!(a.cofactor(0, 0), -12.0);
         assert_eq!(a.minor(1, 0), 25.0);
@@ -586,11 +558,7 @@ mod tests {
 
     #[test]
     fn test_calculating_the_determinant_of_a_3x3_matrix() {
-        let a = Matrix3::from_rows([
-            [1.0, 2.0, 6.0],
-            [-5.0, 8.0, -4.0],
-            [2.0, 6.0, 4.0],
-        ]);
+        let a = Matrix3::from_rows([[1.0, 2.0, 6.0], [-5.0, 8.0, -4.0], [2.0, 6.0, 4.0]]);
         assert_eq!(a.cofactor(0, 0), 56.0);
         assert_eq!(a.cofactor(0, 1), 12.0);
         assert_eq!(a.cofactor(0, 2), -46.0);

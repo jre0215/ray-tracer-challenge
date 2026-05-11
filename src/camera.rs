@@ -127,16 +127,12 @@ mod tests {
     #[test]
     fn test_constructing_a_ray_when_the_camera_is_transformed() {
         let mut c = Camera::new(201, 101, FRAC_PI_2);
-        c.transform = Matrix4::rotation_y(FRAC_PI_4)
-            * Matrix4::translation(0.0, -2.0, 5.0);
+        c.transform = Matrix4::rotation_y(FRAC_PI_4) * Matrix4::translation(0.0, -2.0, 5.0);
         let inverse_transform = c.transform.inverse();
         let origin = inverse_transform * Tuple::point(0.0, 0.0, 0.0);
         let r = c.ray_for_pixel(inverse_transform, origin, 100, 50);
         assert_eq!(r.origin, Tuple::point(0.0, 2.0, -5.0));
-        assert_eq!(
-            r.direction,
-            Tuple::vector(SQRT_2 / 2.0, 0.0, -SQRT_2 / 2.0)
-        );
+        assert_eq!(r.direction, Tuple::vector(SQRT_2 / 2.0, 0.0, -SQRT_2 / 2.0));
     }
 
     #[test]
