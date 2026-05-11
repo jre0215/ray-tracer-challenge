@@ -7,7 +7,6 @@ use ray_tracer_challenge::light::{PointLight, lighting};
 use ray_tracer_challenge::ray::Ray;
 use ray_tracer_challenge::sphere::Sphere;
 use ray_tracer_challenge::tuple::Tuple;
-use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
@@ -61,14 +60,14 @@ fn main() {
 
     let mut file = match File::create(&path) {
         Err(why) => {
-            panic!("couldn't create {}: {}", display, why.description())
+            panic!("couldn't create {}: {}", display, why)
         }
         Ok(file) => file,
     };
 
     match file.write_all(canvas.to_ppm().as_bytes()) {
         Err(why) => {
-            panic!("couldn't write to {}: {}", display, why.description())
+            panic!("couldn't write to {}: {}", display, why)
         }
         Ok(_) => println!("successfully wrote to {}", display),
     }
