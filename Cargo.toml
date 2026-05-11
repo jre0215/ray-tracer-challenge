@@ -1,7 +1,7 @@
 [package]
 name = "ray-tracer-challenge"
 version = "0.1.0"
-authors = ["= <joshua.escamilla@selu.edu>"]
-edition = "2018"
+authors = ["Joshua Escamilla"]
+edition = "2024"
 
 [dependencies]

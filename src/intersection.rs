@@ -87,14 +87,14 @@ pub fn find_hit(intersections: Vec<Intersection>) -> Option<Intersection> {
 
 #[cfg(test)]
 mod tests {
+    use crate::EPSILON;
     use crate::color::Color;
-    use crate::intersection::{find_hit, Intersection};
+    use crate::intersection::{Intersection, find_hit};
     use crate::matrix::Matrix4;
     use crate::ray::Ray;
     use crate::sphere::Sphere;
     use crate::tuple::Tuple;
     use crate::world::World;
-    use crate::EPSILON;
 
     #[test]
     fn test_an_intersection_encapsulates_t_and_an_object() {

@@ -71,7 +71,7 @@ pub fn lighting(
 #[cfg(test)]
 mod tests {
     use crate::color::Color;
-    use crate::light::{lighting, PointLight};
+    use crate::light::{PointLight, lighting};
     use crate::material::Material;
     use crate::tuple::Tuple;
     use std::f32::consts::SQRT_2;
@@ -107,8 +107,8 @@ mod tests {
     }
 
     #[test]
-    fn test_lighting_with_the_eye_between_light_and_surface_eye_offset_45_degrees(
-    ) {
+    fn test_lighting_with_the_eye_between_light_and_surface_eye_offset_45_degrees()
+     {
         let material = Material::default();
         let position = Tuple::point(0.0, 0.0, 0.0);
         let eye_vector = Tuple::vector(0.0, SQRT_2 / 2.0, -SQRT_2 / 2.0);

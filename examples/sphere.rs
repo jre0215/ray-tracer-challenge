@@ -3,7 +3,7 @@ extern crate ray_tracer_challenge;
 use ray_tracer_challenge::canvas::Canvas;
 use ray_tracer_challenge::color::Color;
 use ray_tracer_challenge::intersection::find_hit;
-use ray_tracer_challenge::light::{lighting, PointLight};
+use ray_tracer_challenge::light::{PointLight, lighting};
 use ray_tracer_challenge::ray::Ray;
 use ray_tracer_challenge::sphere::Sphere;
 use ray_tracer_challenge::tuple::Tuple;

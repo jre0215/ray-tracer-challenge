@@ -1,5 +1,5 @@
 use crate::color::Color;
-use crate::intersection::{find_hit, Intersection};
+use crate::intersection::{Intersection, find_hit};
 use crate::light::PointLight;
 use crate::matrix::Matrix4;
 use crate::ray::Ray;
